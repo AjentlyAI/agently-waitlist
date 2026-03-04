@@ -1,65 +1,79 @@
-import Image from "next/image";
+import { Card } from '@/components/ui/card';
+import { IconArrowRight } from '@tabler/icons-react';
+import HeroAjently from '@/components/mvpblocks/hero-ajently';
+import FeaturesAjently from '@/components/mvpblocks/features-ajently';
+import WaitlistPage from '@/components/mvpblocks/waitlist';
+import BentoGrid from '@/components/mvpblocks/bento-grid-2';
+import FooterAjently from '@/components/mvpblocks/footer-ajently';
+import AjentlyLiquidNavbar from '@/components/ui/ajently-liquid-navbar';
+
+
+const problems = [
+  'AI tools are scattered across too many platforms',
+  'Workflows are hard to reuse across tools and teams',
+  'There is no central place to discover quality AI agents',
+  'Creators struggle to monetize the agents they build',
+];
 
 export default function Home() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <main className="bg-white text-[#1d304f]">
+      <AjentlyLiquidNavbar />
+      <HeroAjently />
+
+      <FeaturesAjently />
+      <BentoGrid />
+
+      <section
+        id="how-it-works"
+        className="bg-white px-6 py-16 md:px-10 md:py-20"
+      >
+        <div className="mx-auto w-full max-w-6xl">
+          <div className="mb-10 space-y-3 text-center">
+            <p className="text-sm font-medium text-[#1d304f]">How it works</p>
+            <h2 className="text-3xl font-semibold tracking-tight text-[#1d304f] md:text-4xl">
+              Start in minutes
+            </h2>
+          </div>
+          <div className="grid gap-4 md:grid-cols-3">
+            {[
+              { step: '1', title: 'Discover an agent' },
+              { step: '2', title: 'Run it instantly' },
+              { step: '3', title: 'Get results and save time' },
+            ].map((item) => (
+              <Card
+                key={item.step}
+                className="rounded-2xl border-[#dbe4f1] bg-white p-6 shadow-sm"
+              >
+                <p className="text-sm font-medium text-[#6f8fbc]">
+                  Step {item.step}
+                </p>
+                <p className="mt-2 text-lg font-medium text-[#1d304f]">
+                  {item.title}
+                </p>
+                <IconArrowRight className="mt-6 h-4 w-4 text-[#6f8fbc]" />
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="creators" className="bg-[#f5f7fa] px-6 py-16 md:px-10 md:py-20">
+        <div className="mx-auto w-full max-w-5xl rounded-3xl border border-[#dbe4f1] bg-white p-8 shadow-sm md:p-10">
+          <p className="text-sm font-medium text-[#1d304f]">For creators</p>
+          <h2 className="mt-3 text-3xl font-semibold tracking-tight text-[#1d304f] md:text-4xl">
+            Build once. Earn forever.
+          </h2>
+          <p className="mt-4 max-w-3xl leading-7 text-slate-600">
+            Publish your AI agents to Ajently, reach users actively looking for
+            automation, and monetize every time your agent runs.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+      </section>
+
+      <WaitlistPage />
+
+      <FooterAjently />
+    </main>
   );
 }
